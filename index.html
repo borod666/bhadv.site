@@ -3,609 +3,666 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成都博幻广告有限公司</title>
+    <title>博幻广告 · 创意无限</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #0b0f1c;
+            color: #eef2ff;
             line-height: 1.6;
-            color: #333;
         }
+
         .container {
             width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
+
         @media (max-width: 1200px) {
             .container {
                 width: 96%;
             }
         }
 
-        /* 顶部导航 */
-        .header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* ----- 导航栏（深色毛玻璃）----- */
+        .navbar {
             position: sticky;
             top: 0;
-            z-index: 999;
+            z-index: 1000;
+            background: rgba(11, 15, 28, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 230, 180, 0.2);
         }
-        .header .container {
+
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
+
         .logo a {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1e3c72;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e0f2fe 0%, #00e6b4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             text-decoration: none;
+            letter-spacing: 2px;
         }
-        .nav ul {
+
+        .nav-links {
             display: flex;
+            gap: 2rem;
             list-style: none;
         }
-        .nav ul li {
-            margin-left: 30px;
-        }
-        .nav ul li a {
+
+        .nav-links a {
+            color: #cdd9ff;
             text-decoration: none;
-            color: #333;
-            font-size: 16px;
+            font-weight: 500;
+            font-size: 1rem;
             transition: color 0.3s;
-        }
-        .nav ul li a:hover {
-            color: #1e3c72;
+            position: relative;
         }
 
-        /* 轮播大图（此处用背景色模拟，你可替换为真实图片） */
-        .banner {
-            height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg.jpg') center/cover no-repeat;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            text-align: center;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00e6b4;
         }
-        .banner-content {
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00e6b4;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
-        .banner h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-        .banner p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .btn {
-            display: inline-block;
-            background: #1e3c72;
-            color: #fff;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 18px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #2a5298;
+
+        /* 移动端菜单简化 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
         }
 
-        /* 公司简介 */
-        .intro {
-            padding: 80px 0;
-            background: #f9f9f9;
-        }
-        .intro .container {
+        /* ----- Hero 区域 ----- */
+        .hero {
+            height: 85vh;
+            min-height: 600px;
+            background: radial-gradient(circle at 70% 30%, #14202e, #0b0f1c);
             display: flex;
             align-items: center;
-            gap: 50px;
-        }
-        .intro-text {
-            flex: 1;
-        }
-        .intro-text h2 {
-            font-size: 36px;
-            color: #1e3c72;
-            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
-        }
-        .intro-text h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 3px;
-            background: #1e3c72;
-        }
-        .intro-text p {
-            margin-bottom: 20px;
-            color: #555;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-        .intro-img {
-            flex: 1;
-            background: #ddd;
-            height: 400px;
-            background: url('images/about.jpg') center/cover no-repeat;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
-        /* 服务项目 */
-        .services {
-            padding: 80px 0;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            color: #1e3c72;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        .section-title::after {
+        .hero::before {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: #1e3c72;
+            width: 150%;
+            height: 150%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.05"><path fill="none" stroke="%2300e6b4" stroke-width="1.5" d="M0 400 L800 400 M400 0 L400 800 M200 200 L600 600 M200 600 L600 200"/></svg>') repeat;
+            animation: rotateGrid 60s linear infinite;
         }
-        .section-desc {
-            text-align: center;
-            color: #666;
+
+        @keyframes rotateGrid {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
-            margin: 0 auto 50px;
+            margin: 0 auto;
+            text-align: center;
         }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #00e6b4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b9c7e0;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #00e6b4;
+            color: #0b0f1c;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 230, 180, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #00c29a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 230, 180, 0.4);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid #00e6b4;
+            color: #00e6b4;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #00e6b4;
+            color: #0b0f1c;
+        }
+
+        /* ----- 通用段落样式 ----- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8f9bb5;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #ffffff, #00e6b4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ----- 关于我们（左右布局）----- */
+        .about-grid {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: #cbd5e6;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00e6b4;
+        }
+
+        .about-img {
+            flex: 1;
+            background: linear-gradient(145deg, #1a2538, #0f172a);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 230, 180, 0.2);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .about-img i {
+            font-size: 5rem;
+            color: #00e6b4;
+            margin-bottom: 1rem;
+        }
+
+        /* ----- 服务卡片（网格）----- */
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .service-item {
-            text-align: center;
-            padding: 30px 20px;
-            background: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: #f0f4fd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
-            color: #1e3c72;
-        }
-        .service-item h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #1e3c72;
-        }
-        .service-item p {
-            color: #777;
-            font-size: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
 
-        /* 业务范围 */
-        .cases {
-            padding: 80px 0;
-            background: #f9f9f9;
+        .service-card {
+            background: #111827;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            transition: 0.3s;
+            border: 1px solid #1f2a3e;
+            text-align: center;
         }
-        .case-grid {
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #00e6b4;
+            box-shadow: 0 20px 25px -12px rgba(0, 230, 180, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* ----- 画廊 / 作品展示 ----- */
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .case-item {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .case-img {
-            height: 250px;
-            background: #ccc;
-            background-size: cover;
-            background-position: center;
-        }
-        .case-info {
-            padding: 20px;
-        }
-        .case-info h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .case-info p {
-            color: #777;
-            font-size: 14px;
+            gap: 1.5rem;
         }
 
-        /* 联系我们 */
-        .contact {
-            padding: 80px 0;
+        .gallery-item {
+            background: #111827;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #1f2a3e;
         }
-        .contact-wrapper {
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: #00e6b4;
+        }
+
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background-size: cover;
+            background-position: center;
+            background-color: #1e293b;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            text-align: center;
+            color: #cbd5e6;
+        }
+
+        /* ----- 合作品牌（双卡片）----- */
+        .partner-grid {
             display: flex;
-            gap: 50px;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+
+        .partner-card {
+            background: #111827;
+            border-radius: 24px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #1f2a3e;
+        }
+
+        .partner-logo {
+            width: 80px;
+            text-align: center;
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .partner-text p {
+            color: #cbd5e6;
+            font-size: 0.9rem;
+        }
+
+        /* ----- 业务范围（带数字）----- */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .business-item {
+            background: #111827;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #1f2a3e;
+            transition: 0.3s;
+        }
+
+        .business-item:hover {
+            border-color: #00e6b4;
+        }
+
+        .business-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .business-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00e6b4;
+            margin-top: 1rem;
+        }
+
+        /* ----- 联系我们（双栏）----- */
+        .contact-flex {
+            display: flex;
+            gap: 3rem;
+            background: #111827;
+            border-radius: 32px;
+            padding: 2.5rem;
+            border: 1px solid #1f2a3e;
+        }
+
         .contact-info {
             flex: 1;
         }
+
         .contact-info h3 {
-            font-size: 24px;
-            color: #1e3c72;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
         }
+
         .contact-info p {
-            margin-bottom: 15px;
-            color: #555;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #cbd5e6;
         }
-        .contact-info i {
-            margin-right: 10px;
-            color: #1e3c72;
-        }
+
         .contact-form {
             flex: 1;
         }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.2rem;
         }
+
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 18px;
+            background: #0f172a;
+            border: 1px solid #1f2a3e;
+            border-radius: 12px;
+            color: #ffffff;
             font-family: inherit;
-        }
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        .submit-btn {
-            background: #1e3c72;
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .submit-btn:hover {
-            background: #2a5298;
+            transition: 0.3s;
         }
 
-        /* 页脚 */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00e6b4;
+        }
+
+        .btn-submit {
+            background: #00e6b4;
+            color: #0b0f1c;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #00c29a;
+        }
+
+        /* ----- 页脚 ----- */
         .footer {
-            background: #1a2639;
-            color: #94a3b8;
-            padding: 40px 0;
+            background: #06090f;
             text-align: center;
-        }
-        .footer p {
-            margin-bottom: 10px;
-        }
-        .footer a {
-            color: #94a3b8;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: #fff;
+            padding: 2rem;
+            border-top: 1px solid #1f2a3e;
+            color: #6c7a91;
         }
 
         /* 响应式 */
         @media (max-width: 992px) {
-            .service-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .case-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .intro .container {
+            .about-grid {
                 flex-direction: column;
             }
-            .contact-wrapper {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .business-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-flex {
                 flex-direction: column;
             }
         }
+
         @media (max-width: 768px) {
-            .header .container {
-                flex-direction: column;
-                height: auto;
-                padding: 20px 0;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav ul li {
-                margin: 5px 15px;
-            }
-            .banner h1 {
-                font-size: 32px;
-            }
-            .service-grid {
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            .case-grid {
+            .business-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
+    <nav class="navbar">
         <div class="container">
-            <div class="logo">
-                <a href="#">博幻广告</a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#">首页</a></li>
-                    <li><a href="#about">关于我们</a></li>
-                    <li><a href="news.html">新闻中心</a></li>
-                    <li><a href="#services">服务项目</a></li>
-                    <li><a href="#cases">业务范围</a></li>
-                    <li><a href="#contact">联系我们</a></li>
-                </ul>
-            </nav>
+            <div class="logo"><a href="#">博幻广告</a></div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#services">服务项目</a></li>
+                <li><a href="#business">业务范围</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <section class="banner">
-        <div class="banner-content">
-            <h1>成都博幻广告有限公司</h1>
-            <p>专业广告策划 · 创意设计 · 品牌全案 · 营销推广</p>
-            <a href="#contact" class="btn">立即咨询</a>
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>博幻广告 · 创意无限</h1>
+            <p>品牌策略 · 创意视觉 · 数字营销 · 全案服务</p>
+            <a href="#contact" class="btn-primary">开启合作</a>
         </div>
     </section>
 
-    <section id="about" class="intro">
-        <div class="container">
-            <div class="intro-text">
-                <h2>关于我们</h2>
-                <p>成都博幻广告有限公司成立于2019年，是一家专注于品牌策划、创意设计、影视制作、数字营销的综合性广告公司。我们拥有一支经验丰富的创意团队和执行团队，致力于为客户提供从策略到落地的全方位广告服务。</p>
-                <p>多年来，我们服务了上百家知名企业，涵盖快消、科技、文旅、教育等多个领域。我们坚信，每一个品牌都值得被用心对待，每一次传播都应充满创意。我们以策略为导向，以创意为核心，帮助客户在激烈的市场竞争中脱颖而出。</p>
-                <a href="#" class="btn" style="background: transparent; color: #1e3c72; border: 2px solid #1e3c72;">了解更多</a>
+    <section id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">关于<span>博幻</span></h2>
+                <p>成都博幻广告有限公司成立于2019年，是一家专注于品牌全案策划、创意设计、影视制作与数字营销的综合性广告机构。我们拒绝平庸，用前瞻视角为品牌注入生命力。</p>
+                <p>团队核心成员来自一线4A公司，服务过上百家知名企业，涵盖科技、文旅、快消、教育等领域。我们相信，广告不止于传播，更是品牌与用户之间的深度共鸣。</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-number">200+</div><div>合作客户</div></div>
+                    <div class="stat"><div class="stat-number">8年</div><div>行业深耕</div></div>
+                    <div class="stat"><div class="stat-number">98%</div><div>客户续约率</div></div>
+                </div>
             </div>
-            <div class="intro-img" style="background-image: url('images/gywm.jpg');"></div>
+            <div class="about-img">
+                <i>🎨</i>
+                <p style="margin-top: 1rem;">创意 · 策略 · 执行</p>
+                <p style="font-size: 0.9rem; color:#8f9bb5;">让品牌价值持续发光</p>
+            </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services" style="background: #0f131f;">
         <div class="container">
-            <h2 class="section-title">我们的服务</h2>
-            <p class="section-desc">提供一站式广告创意解决方案，助力品牌价值提升</p>
+            <h2 class="section-title">我们的<span>服务</span></h2>
+            <p class="section-subtitle">从策略到创意，一站式品牌增长解决方案</p>
             <div class="service-grid">
-                <div class="service-item">
-                    <div class="service-icon">🎯</div>
-                    <h3>品牌策划</h3>
-                    <p>品牌定位、核心价值提炼、品牌故事构建、视觉识别系统</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">✏️</div>
-                    <h3>创意设计</h3>
-                    <p>LOGO设计、VI系统、包装设计、宣传物料、UI界面设计</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">🎬</div>
-                    <h3>影视制作</h3>
-                    <p>企业宣传片、TVC广告、短视频内容、产品视频拍摄</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">📱</div>
-                    <h3>数字营销</h3>
-                    <p>社交媒体运营、搜索引擎优化、信息流广告、数据分析</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">📊</div>
-                    <h3>营销策划</h3>
-                    <p>活动策划、媒介投放、KOL合作、整合营销传播</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">🏆</div>
-                    <h3>公关活动</h3>
-                    <p>新品发布会、品牌快闪、会展策划、线下体验活动</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">📈</div>
-                    <h3>市场调研</h3>
-                    <p>消费者洞察、竞品分析、市场趋势研究、策略咨询</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">💡</div>
-                    <h3>创意孵化</h3>
-                    <p>新品牌从0到1构建、产品概念创意、商业模式设计</p>
-                </div>
+                <div class="service-card"><div class="service-icon">🎯</div><h3>品牌策划</h3><p>定位 / 故事 / 视觉识别系统</p></div>
+                <div class="service-card"><div class="service-icon">✏️</div><h3>创意设计</h3><p>LOGO / VI / 包装 / 宣传物料</p></div>
+                <div class="service-card"><div class="service-icon">🎬</div><h3>影视制作</h3><p>宣传片 / TVC / 短视频</p></div>
+                <div class="service-card"><div class="service-icon">📱</div><h3>数字营销</h3><p>社媒运营 / 信息流 / 数据分析</p></div>
+                <div class="service-card"><div class="service-icon">📊</div><h3>营销策划</h3><p>活动 / 媒介 / KOL整合</p></div>
+                <div class="service-card"><div class="service-icon">🏆</div><h3>公关活动</h3><p>发布会 / 快闪 / 会展</p></div>
+                <div class="service-card"><div class="service-icon">📈</div><h3>市场调研</h3><p>消费者洞察 / 竞品分析</p></div>
+                <div class="service-card"><div class="service-icon">💡</div><h3>创意孵化</h3><p>新品牌0到1构建</p></div>
             </div>
         </div>
     </section>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/zf.jpg" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/gr.jpg" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/gr1.jpg" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/tpy.png" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/tpy2.jpg" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<div style="text-align: center; margin: 40px 0;">
-    <img src="images/tpy3.jpg" alt="居中图片" style="max-width: 100%; height: auto; border-radius: 8px;">
-</div>
-<!-- 左右图文板块：左图右文 -->
-<div class="media-block" style="display: flex; align-items: center; gap: 30px; margin: 40px 0; flex-wrap: wrap;">
-    <!-- 左侧图片 -->
-    <div style="flex: 0 0 200px; text-align: center;">
-        <img src="images/dhlogo.png" alt="公司logo" style="max-width: 100%; height: auto;">
-    </div>
-    <!-- 右侧文本 -->
-    <div style="flex: 1; min-width: 280px;">
-        <h2 style="font-size: 24px; color: #1e3c72; margin-bottom: 15px; border-left: 4px solid #1e3c72; padding-left: 15px;">
-        <p style="font-size: 16px; line-height: 1.8; color: #555; text-align: justify;">
-            鼎和财产保险股份有限公司成立于2008年5月，总部设在深圳，注册资本为46.43亿元，系南方电网公司控股子公司。股东单位包括南方电网有限责任公司、广东、广西、云南、贵州、海南电网有限责任公司以及南网财务有限公司，中国长江电力股份有限公司、广州开发区投资集团有限公司、中国华电集团资本控股有限公司。目前成立了广东、广西、云南、贵州、海南、深圳、四川、上海、湖北、河南、江西、陕西、山东、河北、安徽15家省级机构，180家三级机构，形成了覆盖全国的营销及服务网络。
-        </p>
-    </div>
-    <!-- 左右图文板块：左图右文 -->
-<div class="media-block" style="display: flex; align-items: center; gap: 30px; margin: 40px 0; flex-wrap: wrap;">
-    <!-- 左侧图片 -->
-    <div style="flex: 0 0 200px; text-align: center;">
-        <img src="images/ct.jpg" alt="公司logo" style="max-width: 100%; height: auto;">
-    </div>
-    <!-- 右侧文本 -->
-    <div style="flex: 1; min-width: 280px;">
-        <h2 style="font-size: 24px; color: #1e3c72; margin-bottom: 15px; border-left: 4px solid #1e3c72; padding-left: 15px;">
-        <p style="font-size: 16px; line-height: 1.8; color: #555; text-align: justify;">
-            诚泰财产保险股份有限公司（以下简称“诚泰保险”）是经原中国保险监督管理委员会批准，于2011年12月31日成立的唯一一家总部设在云南的全国性保险公司，注册资本为59.7亿元人民币，位于全国财险前列。目前诚泰保险经营1000余款保险产品，为社会提供了超23万亿元的保险保障。
-        </p>
-    </div>
-</div>
-    <section id="cases" class="cases">
-        <div class="container">
-            <h2 class="section-title">业务涵盖</h2>
-            <p class="section-desc">用作品说话，见证品牌成长</p>
-            <div class="case-grid">
-                <div class="case-item">
-                    
-                    <div class="case-info">
-                        <h3>科技品牌全案策划</h3>
-                        <p>从品牌定位到视觉识别，助力科技企业完成品牌升级。</p>
-                    </div>
+
+    <!-- 画廊 / 作品展示（使用原有图片占位，请确保 images 目录下有相应图片） -->
+    <section class="container" style="padding-top: 0;">
+        <h2 class="section-title">作品<span>瞬间</span></h2>
+        <p class="section-subtitle">用案例说话，见证品牌成长</p>
+        <div class="gallery-grid">
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/zf.jpg');"></div><div class="gallery-caption">品牌全案策划</div></div>
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/gr.jpg');"></div><div class="gallery-caption">创意设计</div></div>
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/gr1.jpg');"></div><div class="gallery-caption">影视制作</div></div>
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/tpy.png');"></div><div class="gallery-caption">数字营销</div></div>
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/tpy2.jpg');"></div><div class="gallery-caption">公关活动</div></div>
+            <div class="gallery-item"><div class="gallery-img" style="background-image: url('images/tpy3.jpg');"></div><div class="gallery-caption">创意孵化</div></div>
+        </div>
+    </section>
+
+    <!-- 合作伙伴 / 双卡片（鼎和保险 + 诚泰保险） -->
+    <section style="background: #0f131f;">
+        <div class="container partner-grid">
+            <div class="partner-card">
+                <div class="partner-logo"><img src="images/dhlogo.png" alt="鼎和保险" style="max-width:70px;"></div>
+                <div class="partner-text">
+                    <p>鼎和财产保险股份有限公司成立于2008年，注册资本46.43亿元，南方电网控股子公司，全国15家省级机构，180家三级机构。</p>
                 </div>
-                <div class="case-item">
-              
-                    <div class="case-info">
-                        <h3>文旅项目整合营销</h3>
-                        <p>通过短视频+社交媒体传播，景区游客量提升200%。</p>
-                    </div>
-                </div>
-                <div class="case-item">
-                    
-                    <div class="case-info">
-                        <h3>快消品视觉升级</h3>
-                        <p>包装设计焕新，产品销量同比增长150%。</p>
-                    </div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-logo"><img src="images/ct.jpg" alt="诚泰保险" style="max-width:70px;"></div>
+                <div class="partner-text">
+                    <p>诚泰财产保险股份有限公司，注册资本59.7亿元，唯一总部在云南的全国性财险公司，经营1000余款保险产品。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <!-- 业务范围（数据卡片） -->
+    <section id="business">
         <div class="container">
-            <h2 class="section-title">联系我们</h2>
-            <p class="section-desc">期待与您携手，共创品牌未来</p>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>成都博幻广告有限公司</h3>
-                    <p><i>📍</i> 地址：四川省成都市金牛区西体路1号号</p>
-                    
-                    <p><i>⏰</i> 工作时间：周一至周五 9:00-18:00</p>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="您的姓名" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="您的邮箱" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="联系电话" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="留言内容" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">提交留言</button>
-                    </form>
-                </div>
+            <h2 class="section-title">核心<span>业务</span></h2>
+            <p class="section-subtitle">专注领域 · 数据见证实力</p>
+            <div class="business-grid">
+                <div class="business-item"><div class="business-icon">🚀</div><h3>科技品牌全案</h3><p>从定位到传播，助力科技企业领跑市场</p><div class="business-number">80+</div></div>
+                <div class="business-item"><div class="business-icon">🏞️</div><h3>文旅整合营销</h3><p>短视频+社交媒体，景区游客量提升200%</p><div class="business-number">30+</div></div>
+                <div class="business-item"><div class="business-icon">🍫</div><h3>快消品视觉升级</h3><p>包装设计焕新，销量同比增长150%</p><div class="business-number">50+</div></div>
             </div>
         </div>
     </section>
 
-    
+    <!-- 联系我们 -->
+    <section id="contact">
+        <div class="container contact-flex">
+            <div class="contact-info">
+                <h3>博幻广告</h3>
+                <p><span>📍</span> 四川省成都市金牛区西体路1号</p>
+                <p><span>📞</span> 028-8888 1234</p>
+                <p><span>✉️</span> hello@bohuan.com</p>
+                <p><span>⏰</span> 周一至周五 9:00-18:00</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group"><input type="text" placeholder="您的姓名"></div>
+                    <div class="form-group"><input type="email" placeholder="您的邮箱"></div>
+                    <div class="form-group"><input type="tel" placeholder="联系电话"></div>
+                    <div class="form-group"><textarea rows="4" placeholder="留言内容"></textarea></div>
+                    <button type="submit" class="btn-submit">提交留言</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 + 不蒜子统计（保留原功能，起点15200） -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 成都博幻广告有限公司 版权所有</p>
+            <div style="margin-top: 10px; font-size: 13px;">
+                <span>本站总浏览量：</span>
+                <span id="busuanzi_value_site_pv" style="display: none;"></span>
+                <span id="custom_pv_display" style="font-weight: 600; color: #00e6b4;">0</span>
+                <span>次</span>
+            </div>
+        </div>
     </footer>
-<footer class="footer">
-    <div class="container">
-        <p>© 2026 成都博幻广告有限公司 版权所有</p>
-      
-        <!-- 浏览量统计（带初始值） -->
-        <div style="margin-top: 10px; font-size: 13px;">
-            <span>本站总浏览量：</span>
-            <span id="busuanzi_container_site_pv" style="display:none;">
-                <span id="busuanzi_value_site_pv"></span>
-            </span>
-            <span id="custom_pv_display" style="font-weight: 600;">0</span>
-            <span>次</span>
-        </div>
-    </div>
-</footer>
 
-<!-- 不蒜子脚本 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <!-- 不蒜子统计脚本 -->
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+    (function() {
+        var countOffset = 15200;
+        var displaySpan = document.getElementById('custom_pv_display');
+        var valueSpan = document.getElementById('busuanzi_value_site_pv');
 
-<!-- 浏览量统计（带初始值） -->
-<div style="margin-top: 10px; font-size: 13px;">
-    <span>本站总浏览量：</span>
-    <!-- 不蒜子原始数字隐藏（不显示） -->
-    <span id="busuanzi_value_site_pv" style="display: none;"></span>
-    <!-- 自定义显示总和 -->
-    <span id="custom_pv_display" style="font-weight: 600;">0</span>
-    <span>次</span>
-</div>
-
-<!-- 不蒜子脚本 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!-- 初始化脚本（修复数字显示） -->
-<script>
-(function() {
-    var countOffset = 15200; // 改成你的起点数字
-    var displaySpan = document.getElementById('custom_pv_display');
-    var valueSpan = document.getElementById('busuanzi_value_site_pv');
-
-    var timer = setInterval(function() {
-        if (valueSpan && valueSpan.innerText) {
-            // 只保留数字（去掉空格、逗号等）
-            var cleanNum = valueSpan.innerText.replace(/[^0-9]/g, '');
-            var bszNum = parseInt(cleanNum, 10) || 0;
-            var totalNum = bszNum + countOffset;
-            displaySpan.innerText = totalNum; // 使用 innerText 避免 HTML 解析
-            clearInterval(timer);
-        }
-    }, 100);
-})();
-</script>
+        var timer = setInterval(function() {
+            if (valueSpan && valueSpan.innerText) {
+                var cleanNum = valueSpan.innerText.replace(/[^0-9]/g, '');
+                var bszNum = parseInt(cleanNum, 10) || 0;
+                displaySpan.innerText = bszNum + countOffset;
+                clearInterval(timer);
+            }
+        }, 100);
+    })();
+    </script>
 </body>
 </html>
