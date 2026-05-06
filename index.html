@@ -94,10 +94,21 @@
             width: 100%;
         }
 
-        /* 移动端菜单简化 */
+        /* 移动端导航栏调整：让菜单可见并换行 */
         @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                height: auto;
+                padding: 12px 0;
+            }
             .nav-links {
-                display: none;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 10px;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
             }
         }
 
@@ -515,7 +526,7 @@
                 <li><a href="#" class="active">首页</a></li>
                 <li><a href="#about">关于我们</a></li>
                 <li><a href="#services">服务项目</a></li>
-                <li><a href="news.html">新闻中心</a></li>   <!-- 新增新闻中心链接 -->
+                <li><a href="#">新闻中心</a></li>   <!-- 新闻中心链接 -->
                 <li><a href="#business">业务范围</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
